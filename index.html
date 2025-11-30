@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>סדנת תנועה — דף נחיתה</title>
+  <!-- Font control: using Inter for a clean, elegant look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f6f4f1; /* subtle warm background */
+      --card: #ffffff;
+      --muted:#6b6b6b;
+      --accent:#1f6feb;
+      --maxw:820px;
+      --gap:18px;
+    }
+    /* reset */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    /* main stable container: centered but not leaving large white margins */
+    .wrap{
+      min-height:100vh; /* fill viewport, but content won't jump */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px; /* small outer breathing space */
+    }
+
+    .card{
+      width:100%;
+      max-width:var(--maxw);
+      background:linear-gradient(180deg,var(--card),#fbfbfb);
+      border-radius:14px;
+      box-shadow:0 6px 24px rgba(16,24,40,0.06);
+      display:grid;
+      grid-template-columns:320px 1fr; /* fixed image column + flexible content */
+      gap:var(--gap);
+      align-items:start;
+      overflow:hidden; /* prevent elements from pushing out */
+    }
+
+    /* image column */
+    .photo{
+      height:420px; /* fixed height to avoid layout shift */
+      min-width:320px;
+      background:linear-gradient(180deg,#e9e6e2,#f7f6f4);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover; /* fill without shifting */
+      display:block;
+    }
+    .photo .hint{
+      position:absolute;
+      bottom:12px;
+      left:12px;
+      right:12px;
+      font-size:12px;
+      color:var(--muted);
+      text-align:left;
+      background:rgba(255,255,255,0.6);
+      padding:8px 10px;
+      border-radius:8px;
+      backdrop-filter:blur(4px);
+    }
+
+    /* content column */
+    .content{
+      padding:28px 28px 32px 28px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    h1{
+      margin:0;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+    .subtitle{
+      color:var(--muted);
+      margin-top:6px;
+      margin-bottom:8px;
+      font-size:13px;
+    }
+
+    .story{
+      background:#fbfbfb;
+      border-radius:10px;
+      padding:14px;
+      border:1px solid #efefef;
+      font-size:15px;
+      color:#222;
+      line-height:1.6;
+      max-height:260px;
+      overflow:auto; /* keep size fixed and avoid pushing */
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top:auto; /* pins to bottom of card content */
+    }
+    .pill{
+      font-size:13px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid #e6e6e6;
+      background:#fff;
+    }
+
+    /* small screens: stack but keep fixed image height to avoid reflow */
+    @media (max-width:740px){
+      .card{grid-template-columns:1fr;}
+      .photo{min-width:unset;height:320px}
+    }
+
+    /* accessibility: focus styles */
+    a:focus,button:focus{outline:3px solid rgba(31,111,235,0.18);outline-offset:2px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <main class="card" role="main">
+      <!-- Image placeholder: replace src with your photo. Keeping fixed dimensions prevents layout shift. -->
+      <div class="photo" aria-hidden="false">
+        <img src="/path-to-your-photo.jpg" alt="תמונה של המנחה">
+        <div class="hint">החלף את הקובץ ב־/path-to-your-photo.jpg — תמונה בגודל 1200x800 תיראה טוב</div>
+      </div>
+
+      <section class="content" aria-labelledby="title">
+        <header>
+          <h1 id="title">כותרת: סדנת תנועה אישית</h1>
+          <div class="subtitle">מקום קצר למשפט בולט שמסביר במה הסדנה עוזרת — 1-2 שורות.</div>
+        </header>
+
+        <article class="story" aria-label="סיפור אישי">
+          <!-- lorem ipsum as requested -->
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et lacus eu nunc volutpat volutpat. Sed vitae mi sed nibh ultricies luctus. Phasellus sit amet ex nec urna tristique suscipit. Integer ac feugiat lorem. Curabitur tristique, nibh vitae luctus aliquet, urna sem dapibus nunc, at tincidunt arcu nunc id massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer id dui vitae nisl faucibus pharetra.</p>
+
+          <p>Morbi pulvinar, sapien non bibendum vulputate, lectus orci tincidunt nunc, sed laoreet nisl nisl vitae risus. Quisque consequat mi vitae ligula fermentum, ac sagittis tortor suscipit. Aenean consequat, arcu eu rhoncus cursus, odio nisl cursus orci, non feugiat nibh lorem nec mauris.</p>
+        </article>
+
+        <div class="meta">
+          <div class="pill">משך: 2.5 שעות</div>
+          <div class="pill">מיקום: ירושלים (דוגמה)</div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>
